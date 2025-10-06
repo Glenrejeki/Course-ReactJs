@@ -1,0 +1,48 @@
+/* src/styles/components.css */
+
+/* Reusable card style */
+.card {
+  @apply bg-white rounded-2xl shadow p-6 mb-6;
+}
+
+/* Input Group */
+.input-group {
+  @apply flex flex-col gap-2 mb-4;
+}
+
+.input-group label {
+  @apply text-sm font-medium text-gray-700;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+  @apply border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+/* Table utilities */
+.table-wrapper {
+  @apply bg-white rounded-xl shadow overflow-x-auto;
+}
+
+/* Buttons for actions */
+.action-buttons {
+  @apply flex items-center gap-2;
+}
+
+/* Modal */
+.modal-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50;
+}
+
+.modal-content {
+  @apply bg-white rounded-xl shadow-lg p-6 w-full max-w-md;
+}
+
+.modal-title {
+  @apply text-xl font-semibold mb-4;
+}
+
+.modal-actions {
+  @apply flex justify-end gap-3 mt-6;
+}

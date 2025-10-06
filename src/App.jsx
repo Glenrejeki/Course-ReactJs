@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./routes/AppRouter";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+
+// Context Providers
+import { AuthProvider } from "./context/AuthContext";
+import { CourseProvider } from "./context/CourseContext";
+import { ContentProvider } from "./context/ContentContext";
+import { StudentProvider } from "./context/StudentContext";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <AuthProvider>
+        <CourseProvider>
+          <ContentProvider>
+            <StudentProvider>
+              <div className="flex min-h-screen bg-gray-50 text-gray-800">
+                {/* Sidebar */}
+                <Sidebar />
+
+                {/* Main content area */}
+                <div className="flex-1 flex flex-col">
+                  <Navbar />
+                  <main className="flex-1 p-6 overflow-y-auto">
+                    <AppRouter />
+                  </main>
+                </div>
+              </div>
+            </StudentProvider>
+          </ContentProvider>
+        </CourseProvider>
+      </AuthProvider>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

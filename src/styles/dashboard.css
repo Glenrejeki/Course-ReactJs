@@ -1,0 +1,90 @@
+/* src/styles/dashboard.css */
+
+.dashboard-container {
+  @apply flex min-h-screen bg-gray-50;
+}
+
+/* Sidebar */
+.sidebar {
+  @apply w-64 bg-blue-700 text-white flex flex-col p-5;
+}
+
+.sidebar h2 {
+  @apply text-xl font-semibold mb-8;
+}
+
+.sidebar ul {
+  @apply flex flex-col gap-3;
+}
+
+.sidebar li {
+  @apply hover:bg-blue-600 rounded-lg px-3 py-2 transition;
+}
+
+.sidebar a {
+  @apply flex items-center gap-2 text-white;
+}
+
+/* Main content area */
+.main-content {
+  @apply flex-1 p-8 overflow-auto;
+}
+
+.dashboard-header {
+  @apply flex justify-between items-center mb-6;
+}
+
+.dashboard-header h1 {
+  @apply text-2xl font-bold text-gray-800;
+}
+
+/* Stats Card */
+.stats-grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-6 mb-8;
+}
+
+.stats-card {
+  @apply bg-white rounded-xl shadow p-5 flex flex-col justify-between;
+}
+
+.stats-card h3 {
+  @apply text-gray-600 text-sm;
+}
+
+.stats-card p {
+  @apply text-2xl font-semibold text-gray-800 mt-2;
+}
+
+/* Table */
+.table-container {
+  @apply bg-white rounded-xl shadow overflow-x-auto;
+}
+
+.table {
+  @apply w-full border-collapse;
+}
+
+.table th {
+  @apply bg-gray-100 text-left px-4 py-2 font-semibold text-gray-700;
+}
+
+.table td {
+  @apply px-4 py-2 border-t;
+}
+
+/* Button utilities */
+.btn {
+  @apply px-4 py-2 rounded-lg text-white font-medium transition;
+}
+
+.btn-blue {
+  @apply bg-blue-600 hover:bg-blue-700;
+}
+
+.btn-red {
+  @apply bg-red-600 hover:bg-red-700;
+}
+
+.btn-gray {
+  @apply bg-gray-500 hover:bg-gray-600;
+}

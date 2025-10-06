@@ -1,0 +1,33 @@
+/* src/styles/auth.css */
+
+.auth-container {
+  @apply flex items-center justify-center min-h-screen bg-gray-100;
+}
+
+.auth-card {
+  @apply bg-white p-8 rounded-2xl shadow-md w-full max-w-md;
+}
+
+.auth-title {
+  @apply text-2xl font-semibold text-center text-gray-800 mb-6;
+}
+
+.auth-form {
+  @apply flex flex-col gap-4;
+}
+
+.auth-input {
+  @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.auth-button {
+  @apply w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition;
+}
+
+.auth-link {
+  @apply text-sm text-center text-gray-600 mt-3;
+}
+
+.auth-link a {
+  @apply text-blue-600 hover:underline;
+}
