@@ -13,7 +13,7 @@ export default function AddContent() {
   };
 
   return (
-    <div className="p-6 max-w-lg mx-auto">
+    <div className="p-6 max-w-lg mx-auto bg-white dark:bg-gray-800 dark:text-gray-100 rounded-lg shadow transition-colors"> 
       <h1 className="text-2xl font-bold mb-4">Tambah Konten Baru</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

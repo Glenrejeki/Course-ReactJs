@@ -27,16 +27,11 @@ export default function Register() {
       return;
     }
 
-    const newUser = {
-      id: usersData.length + 1,
-      username: form.username,
-      password: form.password,
-      role: "student",
-    };
-
-    // Simpan user baru ke localStorage
     const savedUsers = JSON.parse(localStorage.getItem("users")) || usersData;
-    const updatedUsers = [...savedUsers, newUser];
+    const updatedUsers = [
+      ...savedUsers,
+      { id: savedUsers.length + 1, username: form.username, password: form.password, role: "student" },
+    ];
     localStorage.setItem("users", JSON.stringify(updatedUsers));
 
     setSuccess("Registration successful! Redirecting...");
@@ -44,72 +39,72 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-100">
+    <div className="min-h-screen flex justify-center items-center bg-gray-100 dark:bg-gray-900 transition-colors">
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-sm"
+        className="bg-white dark:bg-gray-800 dark:text-gray-100 shadow-lg rounded-2xl p-8 w-full max-w-sm transition-colors"
       >
         <h1 className="text-2xl font-bold text-center mb-6">Register</h1>
 
         {error && (
-          <p className="bg-red-100 text-red-600 px-3 py-2 mb-4 rounded-md text-sm text-center">
+          <p className="bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300 px-3 py-2 mb-4 rounded-md text-sm text-center">
             {error}
           </p>
         )}
         {success && (
-          <p className="bg-green-100 text-green-600 px-3 py-2 mb-4 rounded-md text-sm text-center">
+          <p className="bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 px-3 py-2 mb-4 rounded-md text-sm text-center">
             {success}
           </p>
         )}
 
         <div className="mb-4">
-          <label className="block text-gray-700 mb-1">Username</label>
+          <label className="block text-gray-700 dark:text-gray-200 mb-1">Username</label>
           <input
             type="text"
             name="username"
             value={form.username}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring focus:ring-blue-200 dark:focus:ring-blue-500"
             required
           />
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700 mb-1">Password</label>
+          <label className="block text-gray-700 dark:text-gray-200 mb-1">Password</label>
           <input
             type="password"
             name="password"
             value={form.password}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring focus:ring-blue-200 dark:focus:ring-blue-500"
             required
           />
         </div>
 
         <div className="mb-6">
-          <label className="block text-gray-700 mb-1">Confirm Password</label>
+          <label className="block text-gray-700 dark:text-gray-200 mb-1">Confirm Password</label>
           <input
             type="password"
             name="confirm"
             value={form.confirm}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring focus:ring-blue-200 dark:focus:ring-blue-500"
             required
           />
         </div>
 
         <button
           type="submit"
-          className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+          className="w-full bg-green-600 dark:bg-green-500 text-white py-2 rounded-lg hover:bg-green-700 dark:hover:bg-green-400 transition"
         >
           Register
         </button>
 
-        <p className="text-sm text-center mt-4">
+        <p className="text-sm text-center mt-4 text-gray-700 dark:text-gray-300">
           Already have an account?{" "}
           <span
             onClick={() => navigate("/login")}
-            className="text-blue-600 cursor-pointer hover:underline"
+            className="text-blue-600 dark:text-blue-400 cursor-pointer hover:underline"
           >
             Login
           </span>

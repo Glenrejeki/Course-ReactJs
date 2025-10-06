@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { coursesData } from "../data/coursesData";
 import { studentsData } from "../data/studentsData";
 import { contentsData } from "../data/contentsData";
+import { ThemeContext } from "../context/ThemeContext"; // pastikan path benar
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const { darkMode } = useContext(ThemeContext);
 
   const totalCourses = coursesData.length;
   const totalStudents = studentsData.length;
@@ -17,9 +19,17 @@ export default function Dashboard() {
   const draftContents = contentsData.filter((c) => c.status === "draft").length;
 
   return (
-    <div className="p-8">
+    <div
+      className={`p-8 min-h-screen transition-colors duration-300 ${
+        darkMode ? "bg-gray-900 text-gray-100" : "bg-gray-50 text-gray-900"
+      }`}
+    >
       {/* Judul Dashboard */}
-      <h1 className="text-3xl font-bold mb-8 text-gray-800">
+      <h1
+        className={`text-3xl font-bold mb-8 ${
+          darkMode ? "text-gray-100" : "text-gray-800"
+        }`}
+      >
         📚 Dashboard Course Management
       </h1>
 
@@ -90,26 +100,51 @@ export default function Dashboard() {
       </div>
 
       {/* Data Preview */}
-      <div className="mt-12 bg-white p-6 rounded-xl shadow-md">
-        <h2 className="text-2xl font-bold mb-4 text-gray-700">📈 Course Terbaru</h2>
-        <table className="w-full text-left border-collapse border border-gray-200">
-          <thead className="bg-gray-100">
+      <div
+        className={`mt-12 p-6 rounded-xl shadow-md transition-colors ${
+          darkMode ? "bg-gray-800" : "bg-white"
+        }`}
+      >
+        <h2
+          className={`text-2xl font-bold mb-4 ${
+            darkMode ? "text-gray-100" : "text-gray-700"
+          }`}
+        >
+          📈 Course Terbaru
+        </h2>
+        <table
+          className={`w-full text-left border-collapse ${
+            darkMode ? "border border-gray-700" : "border border-gray-200"
+          }`}
+        >
+          <thead
+            className={`${
+              darkMode ? "bg-gray-700 text-gray-200" : "bg-gray-100"
+            }`}
+          >
             <tr>
-              <th className="border border-gray-200 px-4 py-2">Judul</th>
-              <th className="border border-gray-200 px-4 py-2">Deskripsi</th>
-              <th className="border border-gray-200 px-4 py-2 text-center">Rating</th>
+              <th className="border border-gray-500 px-4 py-2">Judul</th>
+              <th className="border border-gray-500 px-4 py-2">Deskripsi</th>
+              <th className="border border-gray-500 px-4 py-2 text-center">
+                Rating
+              </th>
             </tr>
           </thead>
           <tbody>
             {coursesData.slice(0, 3).map((course) => (
-              <tr key={course.id} className="hover:bg-gray-50">
-                <td className="border border-gray-200 px-4 py-2 font-medium">
+              <tr
+                key={course.id}
+                className={`transition-colors ${
+                  darkMode ? "hover:bg-gray-700" : "hover:bg-gray-50"
+                }`}
+              >
+                <td className="border border-gray-500 px-4 py-2 font-medium">
                   {course.title}
                 </td>
-                <td className="border border-gray-200 px-4 py-2">
+                <td className="border border-gray-500 px-4 py-2">
                   {course.description.slice(0, 60)}...
                 </td>
-                <td className="border border-gray-200 px-4 py-2 text-center">
+                <td className="border border-gray-500 px-4 py-2 text-center">
                   ⭐ {course.rating}
                 </td>
               </tr>
@@ -118,7 +153,12 @@ export default function Dashboard() {
         </table>
       </div>
 
-      <p className="text-sm text-gray-400 mt-8 text-center">
+      {/* Footer */}
+      <p
+        className={`text-sm mt-8 text-center ${
+          darkMode ? "text-gray-500" : "text-gray-400"
+        }`}
+      >
         © {new Date().getFullYear()} Course Management — Dummy Version (No API)
       </p>
     </div>
