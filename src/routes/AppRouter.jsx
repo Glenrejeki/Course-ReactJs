@@ -1,15 +1,16 @@
+// src/routes/AppRouter.jsx
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 // Context
-import { AuthProvider } from "../context/AuthContext";
-import { CourseProvider } from "../context/CourseContext";
-import { ContentProvider } from "../context/ContentContext";
-import { StudentProvider } from "../context/StudentContext";
+import { UserProvider } from "../context/UserContext";
 
 // Pages - Auth
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
+
+// Pages - Dashboard
+import Dashboard from "../pages/Dashboard";
 
 // Pages - Course
 import CourseList from "../pages/Course/CourseList";
@@ -27,13 +28,13 @@ import EditContent from "../pages/Content/EditContent";
 import StudentList from "../pages/Student/StudentList";
 import StudentDetail from "../pages/Student/StudentDetail";
 
-// Pages - Dashboard
-import Dashboard from "../pages/Dashboard";
+// Pages - User
+import UserList from "../pages/User/UserList";
+import UserDetail from "../pages/User/UserDetail";
 
 // Utils
 import { getLocalUser } from "../utils/localStorage";
 
-// Private route protection
 const PrivateRoute = ({ children }) => {
   const user = getLocalUser();
   return user ? children : <Navigate to="/login" />;
@@ -41,118 +42,130 @@ const PrivateRoute = ({ children }) => {
 
 const AppRouter = () => {
   return (
-    <AuthProvider>
-      <CourseProvider>
-        <ContentProvider>
-          <StudentProvider>
-            <Routes>
-              {/* Auth */}
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
+    <UserProvider>
+      <Routes>
+        {/* Auth */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-              {/* Dashboard */}
-              <Route
-                path="/"
-                element={
-                  <PrivateRoute>
-                    <Dashboard />
-                  </PrivateRoute>
-                }
-              />
+        {/* Dashboard */}
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
 
-              {/* Course */}
-              <Route
-                path="/courses"
-                element={
-                  <PrivateRoute>
-                    <CourseList />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/courses/:id"
-                element={
-                  <PrivateRoute>
-                    <CourseDetail />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/courses/add"
-                element={
-                  <PrivateRoute>
-                    <AddCourse />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/courses/edit/:id"
-                element={
-                  <PrivateRoute>
-                    <EditCourse />
-                  </PrivateRoute>
-                }
-              />
+        {/* Course */}
+        <Route
+          path="/courses"
+          element={
+            <PrivateRoute>
+              <CourseList />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/courses/:id"
+          element={
+            <PrivateRoute>
+              <CourseDetail />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/courses/add"
+          element={
+            <PrivateRoute>
+              <AddCourse />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/courses/edit/:id"
+          element={
+            <PrivateRoute>
+              <EditCourse />
+            </PrivateRoute>
+          }
+        />
 
-              {/* Content */}
-              <Route
-                path="/contents"
-                element={
-                  <PrivateRoute>
-                    <ContentList />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/contents/:id"
-                element={
-                  <PrivateRoute>
-                    <ContentDetail />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/contents/add"
-                element={
-                  <PrivateRoute>
-                    <AddContent />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/contents/edit/:id"
-                element={
-                  <PrivateRoute>
-                    <EditContent />
-                  </PrivateRoute>
-                }
-              />
+        {/* Content */}
+        <Route
+          path="/contents"
+          element={
+            <PrivateRoute>
+              <ContentList />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/contents/:id"
+          element={
+            <PrivateRoute>
+              <ContentDetail />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/contents/add"
+          element={
+            <PrivateRoute>
+              <AddContent />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/contents/edit/:id"
+          element={
+            <PrivateRoute>
+              <EditContent />
+            </PrivateRoute>
+          }
+        />
 
-              {/* Student */}
-              <Route
-                path="/students"
-                element={
-                  <PrivateRoute>
-                    <StudentList />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/students/:id"
-                element={
-                  <PrivateRoute>
-                    <StudentDetail />
-                  </PrivateRoute>
-                }
-              />
+        {/* Student */}
+        <Route
+          path="/students"
+          element={
+            <PrivateRoute>
+              <StudentList />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/students/:id"
+          element={
+            <PrivateRoute>
+              <StudentDetail />
+            </PrivateRoute>
+          }
+        />
 
-              {/* Fallback */}
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </StudentProvider>
-        </ContentProvider>
-      </CourseProvider>
-    </AuthProvider>
+        {/* User */}
+        <Route
+          path="/users"
+          element={
+            <PrivateRoute>
+              <UserList />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/users/:id"
+          element={
+            <PrivateRoute>
+              <UserDetail />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </UserProvider>
   );
 };
 

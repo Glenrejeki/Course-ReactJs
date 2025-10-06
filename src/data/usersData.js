@@ -1,14 +1,17 @@
+// src/data/usersData.js
 export const usersData = [
   {
     id: 1,
     username: "admin",
-    password: "admin123",
+    email: "admin@example.com",
+    password: "123456",
     role: "admin",
   },
   {
     id: 2,
     username: "student",
-    password: "student123",
+    email: "student@example.com",
+    password: "password",
     role: "student",
   },
 ];

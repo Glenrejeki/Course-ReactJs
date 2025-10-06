@@ -1,8 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { usersData } from "../../data/usersData";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Login() {
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [form, setForm] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
@@ -14,16 +16,12 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const result = login(form.username, form.password);
 
-    const user = usersData.find(
-      (u) => u.username === form.username && u.password === form.password
-    );
-
-    if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
+    if (result.success) {
       navigate("/dashboard");
     } else {
-      setError("Invalid username or password");
+      setError(result.message);
     }
   };
 
