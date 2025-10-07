@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import Calendar from "../pages/Calendar";
 
 export default function Sidebar() {
   const location = useLocation();
@@ -9,7 +8,7 @@ export default function Sidebar() {
     { path: "/courses", label: "Courses" },
     { path: "/students", label: "Students" },
     { path: "/contents", label: "Contents" },
-    { path: "/calendar", label: "Kalender" }, // opsional, jika mau ada route-nya juga
+    { path: "/calendar", label: "Kalender" },
   ];
 
   return (
@@ -42,12 +41,6 @@ export default function Sidebar() {
             </li>
           ))}
         </ul>
-
-        {/* 🗓️ Kalender Libur Nasional */}
-        <div className="border-t pt-4 mt-auto">
-          <h2 className="text-lg font-semibold mb-2 text-center">Kalender</h2>
-          <Calendar />
-        </div>
       </div>
     </aside>
   );

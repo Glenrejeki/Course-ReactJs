@@ -32,14 +32,23 @@ import StudentDetail from "../pages/Student/StudentDetail";
 import UserList from "../pages/User/UserList";
 import UserDetail from "../pages/User/UserDetail";
 
+// 🗓️ Page - Calendar
+import Calendar from "../pages/Calendar";
+
 // Utils
 import { getLocalUser } from "../utils/localStorage";
 
+// ============================
+// PrivateRoute Component
+// ============================
 const PrivateRoute = ({ children }) => {
   const user = getLocalUser();
   return user ? children : <Navigate to="/login" />;
 };
 
+// ============================
+// Main App Router
+// ============================
 const AppRouter = () => {
   return (
     <UserProvider>
@@ -54,6 +63,16 @@ const AppRouter = () => {
           element={
             <PrivateRoute>
               <Dashboard />
+            </PrivateRoute>
+          }
+        />
+
+        {/* 🗓️ Calendar */}
+        <Route
+          path="/calendar"
+          element={
+            <PrivateRoute>
+              <Calendar />
             </PrivateRoute>
           }
         />
